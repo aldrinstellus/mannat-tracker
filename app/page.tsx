@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import { showInfo } from "./data/show";
 
@@ -18,6 +19,14 @@ export default function Home() {
         <div className="absolute bottom-10 left-10 w-48 h-48 bg-burgundy/10 rounded-full blur-3xl" />
 
         <div className="relative max-w-4xl mx-auto">
+          {/* Show Banner */}
+          <div className="mb-8 rounded-xl overflow-hidden border border-gold/20">
+            <img
+              src={showInfo.bannerImage}
+              alt="Mannat - Har Khushi Paane Ki"
+              className="w-full h-48 md:h-64 object-cover"
+            />
+          </div>
           <div className="flex items-center gap-3 mb-4">
             <span className="inline-block w-12 h-0.5 bg-gold" />
             <span className="text-gold text-sm tracking-[0.3em] uppercase">{showInfo.network}</span>

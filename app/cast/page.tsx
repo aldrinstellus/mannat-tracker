@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { leadCast, supportingCast, familyTree } from "../data/cast";
 
 export default function CastPage() {
@@ -19,7 +20,17 @@ export default function CastPage() {
               key={member.name}
               className="card-hover bg-bg-card border border-burgundy/30 rounded-xl overflow-hidden"
             >
-              <div className="bg-gradient-to-r from-burgundy/40 to-burgundy/20 px-6 py-4">
+              {member.image && (
+                <div className="relative w-full h-56 overflow-hidden">
+                  <img
+                    src={member.image}
+                    alt={`${member.actor} as ${member.name}`}
+                    className="w-full h-full object-cover object-top"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-bg-card via-transparent to-transparent" />
+                </div>
+              )}
+              <div className={`${member.image ? '' : 'bg-gradient-to-r from-burgundy/40 to-burgundy/20'} px-6 py-4`}>
                 <h3 className="text-xl font-bold text-text-primary">{member.name}</h3>
                 <p className="text-gold text-sm">{member.actor}</p>
               </div>
@@ -41,13 +52,26 @@ export default function CastPage() {
           {supportingCast.map((member) => (
             <div
               key={member.name}
-              className="card-hover bg-bg-card/70 border border-burgundy/20 rounded-lg p-4"
+              className="card-hover bg-bg-card/70 border border-burgundy/20 rounded-lg overflow-hidden"
             >
-              <h3 className="text-lg font-semibold text-text-primary">{member.name}</h3>
-              <p className="text-text-secondary text-xs mt-1 leading-relaxed">{member.role}</p>
-              <span className="inline-block mt-2 px-2 py-0.5 text-xs rounded-full bg-burgundy/15 border border-burgundy/30 text-text-muted capitalize">
-                {member.family}
-              </span>
+              {member.image && (
+                <div className="relative w-full h-36 overflow-hidden">
+                  <img
+                    src={member.image}
+                    alt={`${member.actor} as ${member.name}`}
+                    className="w-full h-full object-cover object-top"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-bg-card via-transparent to-transparent" />
+                </div>
+              )}
+              <div className="p-4">
+                <h3 className="text-lg font-semibold text-text-primary">{member.name}</h3>
+                <p className="text-gold text-xs">{member.actor}</p>
+                <p className="text-text-secondary text-xs mt-1 leading-relaxed">{member.role}</p>
+                <span className="inline-block mt-2 px-2 py-0.5 text-xs rounded-full bg-burgundy/15 border border-burgundy/30 text-text-muted capitalize">
+                  {member.family}
+                </span>
+              </div>
             </div>
           ))}
         </div>
